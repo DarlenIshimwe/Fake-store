@@ -37,6 +37,8 @@ function Products() {
               description={product.description}
               price={`K${product.price}`}
               image={product.image}
+              category={product.category}
+              rating={product.rating}
             />
           ))}
         </SimpleGrid>

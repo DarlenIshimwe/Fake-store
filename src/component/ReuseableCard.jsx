@@ -9,6 +9,7 @@ import {
   Image,
   Text,
   Container,
+  Button,
   useMantineTheme,
 } from '@mantine/core';
 import classes from './Reuseable.module.css';
@@ -43,7 +44,9 @@ export function ReuseableCard(props) {
 
       <Group justify="space-between" className={classes.footer}>
          
-        <button>add to Cart</button>
+         <Button radius="xl" size="md" className={classes.control}>
+                   View product
+          </Button>
       </Group>
     </Card>
     </Link>
