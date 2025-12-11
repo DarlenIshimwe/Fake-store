@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+
 import { ReuseableCard } from "../component/ReuseableCard";
 import { SimpleGrid, Box } from "@mantine/core";
 import Loading from "../component/Loading";
+
 function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -12,9 +14,9 @@ function Products() {
       .then((response) => response.json())
       .then((data) => {
         setProducts(data);
-        setLoading(false); // stop AFTER data arrives
+        setLoading(false);
       })
-      .catch(() => setLoading(false)); // also stop on error
+      .catch(() => setLoading(false));
   };
 
   useEffect(() => {
@@ -24,14 +26,16 @@ function Products() {
   return (
     <Box>
       {loading ? (
-        (<Loading />)
+        <Loading />
       ) : (
         <SimpleGrid cols={4} mt={-70}>
           {products.map((product) => (
             <ReuseableCard
               key={product.id}
+              to={`/product/${product?.id}`}
               title={product.title}
               description={product.description}
+              price={`K${product.price}`}
               image={product.image}
             />
           ))}
