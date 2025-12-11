@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ReuseableCard } from "../component/ReuseableCard";
-import {SimpleGrid, Box} from "@mantine/core"
+import { SimpleGrid, Box } from "@mantine/core";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -14,14 +14,11 @@ function Products() {
   }, []);
   return (
     <Box>
-        <SimpleGrid cols={4} mt={-70}>
-      {products.map((product) => (
-        
-     
-      <ReuseableCard />
-      ))}
-    </SimpleGrid>
-
+      <SimpleGrid cols={4} mt={-70}>
+        {products.map((product) => (
+          <ReuseableCard />
+        ))}
+      </SimpleGrid>
     </Box>
   );
 }
