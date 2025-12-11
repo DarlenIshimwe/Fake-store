@@ -1,11 +1,12 @@
 import { useEffect,useState} from "react";
+import {ReuseableCard} from "../component/ReuseableCard"
 
 function Products(){
     const [products,setProducts] = useState([])
     const fetchData =()=>{
     fetch('https://fakestoreapi.com/products')
   .then(response => response.json())
-  .then(data => console.log(data));
+  .then(data => setProducts(data));
     }
     useEffect(()=>{
     fetchData()
@@ -13,7 +14,7 @@ function Products(){
     return(
 
         <div>
-            {/* {products.map(product=>(<li>{}</li>))} */}
+            <ReuseableCard />
         </div>
     )
 }
