@@ -4,6 +4,7 @@ import { SimpleGrid, Box } from "@mantine/core";
 
 function Products() {
   const [products, setProducts] = useState([]);
+  console.log(products)
   const fetchData = () => {
     fetch("https://fakestoreapi.com/products")
       .then((response) => response.json())
@@ -16,7 +17,11 @@ function Products() {
     <Box>
       <SimpleGrid cols={4} mt={-70}>
         {products.map((product) => (
-          <ReuseableCard />
+          <ReuseableCard
+          key={product.id}
+          title={product.title} 
+          image={product.image}
+          />
         ))}
       </SimpleGrid>
     </Box>

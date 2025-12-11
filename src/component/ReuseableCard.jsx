@@ -13,7 +13,7 @@ import {
 } from '@mantine/core';
 import classes from './Reuseable.module.css';
 
-export function ReuseableCard() {
+export function ReuseableCard(props) {
   const linkProps = { href: 'https://mantine.dev', target: '_blank', rel: 'noopener noreferrer' };
   const theme = useMantineTheme();
 
@@ -22,7 +22,7 @@ export function ReuseableCard() {
      <Card withBorder radius="md" className={classes.card}>
       <Card.Section>
         <a {...linkProps}>
-          <Image src="https://i.imgur.com/Cij5vdL.png" height={180} />
+          <Image src={props.image} height={180} />
         </a>
       </Card.Section>
 
@@ -31,14 +31,11 @@ export function ReuseableCard() {
       </Badge>
 
       <Text className={classes.title} fw={500} component="a" {...linkProps}>
-        Resident Evil Village review
+        {props.title}
       </Text>
 
       <Text fz="sm" c="dimmed" lineClamp={4}>
-        Resident Evil Village is a direct sequel to 2017’s Resident Evil 7, but takes a very
-        different direction to its predecessor, namely the fact that this time round instead of
-        fighting against various mutated zombies, you’re now dealing with more occult enemies like
-        werewolves and vampires.
+        {props.description}
       </Text>
 
       <Group justify="space-between" className={classes.footer}>
