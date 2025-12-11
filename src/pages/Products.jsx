@@ -4,33 +4,39 @@ import { SimpleGrid, Box } from "@mantine/core";
 import Loading from "../component/Loading";
 function Products() {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false)
-  console.log(products)
+  const [loading, setLoading] = useState(false);
+  console.log(products);
   const fetchProducts = () => {
-   
+    setLoading(true);
     fetch("https://fakestoreapi.com/products")
       .then((response) => response.json())
-      .then((data) => setProducts(data));
-      
+      .then((data) => {
+        setProducts(data);
+        setLoading(false); // stop AFTER data arrives
+      })
+      .catch(() => setLoading(false)); // also stop on error
   };
-  useEffect(() => {
-    setLoading(true)
-    fetchProducts();
-    setLoading(false)
-  }, []);
 
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   return (
     <Box>
-      {loading ? "loading" : (<SimpleGrid cols={4} mt={-70}>
-        {products.map((product) => (
-          <ReuseableCard
-          key={product.id}
-          title={product.title} 
-          image={product.image}
-          />
-        ))}
-      </SimpleGrid>)}
+      {loading ? (
+        (<Loading />)
+      ) : (
+        <SimpleGrid cols={4} mt={-70}>
+          {products.map((product) => (
+            <ReuseableCard
+              key={product.id}
+              title={product.title}
+              description={product.description}
+              image={product.image}
+            />
+          ))}
+        </SimpleGrid>
+      )}
     </Box>
   );
 }
