@@ -20,7 +20,9 @@ export function ReuseableCard(props) {
 
   return (
    <Container size="lg">
-  <Link to={props.to}>
+  <Link to = {props.to}
+  state={{ image: props.image, title: props.title, price: props.price }}
+  >
 
      <Card withBorder radius="md" className={classes.card}>
       <Card.Section>
@@ -53,3 +55,5 @@ export function ReuseableCard(props) {
    </Container>
   );
 }
+
+        

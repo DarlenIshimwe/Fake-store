@@ -22,7 +22,7 @@ function Products() {
   useEffect(() => {
     fetchProducts();
   }, []);
-
+  
   return (
     <Box>
       {loading ? (

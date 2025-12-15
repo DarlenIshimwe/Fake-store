@@ -1,28 +1,23 @@
-import { IconSearch } from '@tabler/icons-react';
-import { Autocomplete, Burger, Group } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-// import { MantineLogo } from '@mantinex/mantine-logo';
-import classes from './Navigation.module.css';
+import { IconSearch } from "@tabler/icons-react";
+import { Autocomplete, Burger, Group } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import { Link } from "react-router-dom";
+import classes from "./Navigation.module.css";
 
 const links = [
-  { link: '/about', label: 'Features' },
-  { link: '/pricing', label: 'Pricing' },
-  { link: '/learn', label: 'Learn' },
-  { link: '/community', label: 'Community' },
+  { link: "/", label: "Home" },
+  { link: "/products", label: "Products" },
+  { link: "/cart", label: "Cart" },
+  { link: "/about", label: "About" },
 ];
 
 export function Navigation() {
   const [opened, { toggle }] = useDisclosure(false);
 
   const items = links.map((link) => (
-    <a
-      key={link.label}
-      href={link.link}
-      className={classes.link}
-      onClick={(event) => event.preventDefault()}
-    >
+    <Link key={link.label} to={link.link} className={classes.link}>
       {link.label}
-    </a>
+    </Link>
   ));
 
   return (
@@ -30,19 +25,27 @@ export function Navigation() {
       <div className={classes.inner}>
         <Group>
           <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
-          {/* <MantineLogo size={28} /> */}
-          Fake store
+          <b>Online store</b>
         </Group>
 
         <Group>
           <Group ml={50} gap={5} className={classes.links} visibleFrom="sm">
             {items}
           </Group>
+
           <Autocomplete
             className={classes.search}
             placeholder="Search"
             leftSection={<IconSearch size={16} stroke={1.5} />}
-            data={['React', 'Angular', 'Vue', 'Next.js', 'Riot.js', 'Svelte', 'Blitz.js']}
+            data={[
+              "React",
+              "Angular",
+              "Vue",
+              "Next.js",
+              "Riot.js",
+              "Svelte",
+              "Blitz.js",
+            ]}
             visibleFrom="xs"
           />
         </Group>
