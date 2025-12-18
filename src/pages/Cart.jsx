@@ -1,8 +1,9 @@
 import { Button, Image, Text, TextInput, Title } from "@mantine/core";
 // import { Image } from "@mantine/core";
 import classes from "./Cart.module.css";
-
+import { useState } from "react";
 export default function Cart() {
+const[addedProduct,setAddedProduct] =useState()
 
   return (
     <div className={classes.wrapper}>

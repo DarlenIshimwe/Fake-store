@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 
 import { ReuseableCard } from "../component/ReuseableCard";
 import { SimpleGrid, Box } from "@mantine/core";
 import Loading from "../component/Loading";
+import { CartContext } from "../context/CartContext";
 
 function Products() {
+    const { addToCart } = useContext(CartContext);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [cart, setCart] = useState([]);
 
-  console.log(cart);
+  // console.log(cart);
   const fetchProducts = () => {
     setLoading(true);
     fetch("https://fakestoreapi.com/products")
@@ -25,18 +26,7 @@ function Products() {
     fetchProducts();
   }, []);
 
-  const addToCart = (product) => {
-    console.log("cart product::", product);
-
-    setCart((prCart) => [
-      ...prCart,
-      {
-        id: product.id,
-        title: product.title,
-      },
-    ]);
-  };
-
+  
   return (
     <Box>
       {loading ? (

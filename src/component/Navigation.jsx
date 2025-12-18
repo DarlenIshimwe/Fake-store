@@ -1,19 +1,24 @@
+import {useContext} from "react"
 import { IconSearch } from "@tabler/icons-react";
 import { Autocomplete, Burger, Group } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Link } from "react-router-dom";
 import classes from "./Navigation.module.css";
+import { CartContext } from "../context/CartContext";
 
-const links = [
-  { link: "/", label: "Home" },
-  { link: "/products", label: "Products" },
-  { link: "/cart", label: "Cart" },
-  { link: "/about", label: "About" },
-];
+
+
 
 export function Navigation() {
+   const { cart } = useContext(CartContext);
   const [opened, { toggle }] = useDisclosure(false);
 
+  const links = [
+  { link: "/", label: "Home" },
+  { link: "/products", label: "Products" },
+  { link: "/cart", label: cart.length },
+  { link: "/about", label: "About" },
+];
   const items = links.map((link) => (
     <Link key={link.label} to={link.link} className={classes.link}>
       {link.label}
