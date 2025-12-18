@@ -10,17 +10,17 @@ import {
   Text,
   Container,
   Button,
+  Box,
   useMantineTheme,
 } from "@mantine/core";
 import classes from "./Reuseable.module.css";
 import { Link } from "react-router-dom";
 
 export function ReuseableCard(props) {
-  const {} = props
+  const {addToCart} = props;
   return (
     <Container size="lg">
-      <Link
-        to={props.to}
+      <Box
         style={{ textDecoration: "none" }}
         state={{ image: props.image, title: props.title, price: props.price }}
       >
@@ -48,25 +48,24 @@ export function ReuseableCard(props) {
             {props.price}
           </Text>
 
-          <Group className={classes.footer} style={{display:"flex",justifyContent:"space-between"}}>
-            <Button radius="sm" size="sm" className={classes.control} >
-              {props.view}
+          <Group
+            className={classes.footer}
+            style={{ display: "flex", justifyContent: "space-between" }}
+          >
+            <Button radius="sm" size="sm" className={classes.control}>
+              <Link to={props.to} style={{color:"white" ,textDecoration:"none"}}>{props.view}</Link>
             </Button>
-             <Button
-          radius="sm"
-          size="sm"
-
-          className={classes.control}
-          onClick={() => addToCart()}
-        >
-          {props.add}
-        </Button>
+            <Button
+              radius="sm"
+              size="sm"
+              className={classes.control}
+              onClick={() => addToCart()}
+            >
+              {props.add}
+            </Button>
           </Group>
         </Card>
-      </Link>
-      <Group justify="space-between" className={classes.footer}>
-       
-      </Group>
+      </Box>
     </Container>
   );
 }
