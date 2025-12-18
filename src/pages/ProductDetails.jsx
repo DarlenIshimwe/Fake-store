@@ -18,10 +18,10 @@ function ProductDetails() {
    const { addToCart} = useContext(CartContext);
   const { id } = useParams();
   const [product, setProduct] = useState();
+  
  
   useEffect(() => {
     const fetchSingleProduct = async () => {
-      setLoading(true);
       try {
         const response = await fetch(`https://fakestoreapi.com/products/${id}`);
         const data = await response.json();
@@ -32,7 +32,6 @@ function ProductDetails() {
     };
 
     fetchSingleProduct();
-    setLoading(false);
   }, []);
 
   if (!product) return <p>Loading...</p>;
