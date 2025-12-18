@@ -16,7 +16,7 @@ import classes from "./Reuseable.module.css";
 import { Link } from "react-router-dom";
 
 export function ReuseableCard(props) {
-  const {addToCart} = props
+  const {} = props
   return (
     <Container size="lg">
       <Link
@@ -44,26 +44,28 @@ export function ReuseableCard(props) {
           <Text fz="sm" c="dimmed" lineClamp={4}>
             {props.description}
           </Text>
-          <Text fz="sm" c="dimmed" lineClamp={4}>
+          <Text fz="lg" c="black" size="lg" lineClamp={4}>
             {props.price}
           </Text>
 
-          <Group justify="space-between" className={classes.footer}>
-            <Button radius="xl" size="md" className={classes.control}>
+          <Group className={classes.footer} style={{display:"flex",justifyContent:"space-between"}}>
+            <Button radius="sm" size="sm" className={classes.control} >
               {props.view}
             </Button>
-          </Group>
-        </Card>
-      </Link>
-      <Group justify="space-between" className={classes.footer}>
-        <Button
-          radius="xl"
-          size="md"
+             <Button
+          radius="sm"
+          size="sm"
+
           className={classes.control}
           onClick={() => addToCart()}
         >
           {props.add}
         </Button>
+          </Group>
+        </Card>
+      </Link>
+      <Group justify="space-between" className={classes.footer}>
+       
       </Group>
     </Container>
   );
