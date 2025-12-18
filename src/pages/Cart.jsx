@@ -2,8 +2,7 @@ import { Button, Image, Text, TextInput, Title } from "@mantine/core";
 // import { Image } from "@mantine/core";
 import classes from "./Cart.module.css";
 
-export default function Cart({ product}) {
-  // if (!product) return <p>Loading...</p>;
+export default function Cart() {
 
   return (
     <div className={classes.wrapper}>
@@ -18,12 +17,12 @@ export default function Cart({ product}) {
           follow us for more goodies and You will never miss important product
           updates,Our new products are availabe once a week, every Sunday.
         </Text>
-        <div className="cart-item">
+        {/* <div className="cart-item">
           <Image src={product.image} alt={product.name} width={100} />
           <h3>{ product.name}</h3>
           <p>${product.price}</p>
           <p>{product.rating}</p>
-        </div>
+        </div> */}
 
         <div className={classes.controls}>
           <TextInput
@@ -32,7 +31,7 @@ export default function Cart({ product}) {
             radius="md"
             size="md"
           />
-          <Button className={classes.control} radius="md" size="md">
+          <Button className={classes.control} radius="md" size="md">~
             Send
           </Button>
         </div>

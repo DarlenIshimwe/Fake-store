@@ -7,7 +7,9 @@ import Loading from "../component/Loading";
 function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-  console.log(products);
+  const [cart, setCart] = useState([]);
+
+  console.log(cart);
   const fetchProducts = () => {
     setLoading(true);
     fetch("https://fakestoreapi.com/products")
@@ -22,7 +24,19 @@ function Products() {
   useEffect(() => {
     fetchProducts();
   }, []);
-  
+
+  const addToCart = (product) => {
+    console.log("cart product::", product);
+
+    setCart((prCart) => [
+      ...prCart,
+      {
+        id: product.id,
+        title: product.title,
+      },
+    ]);
+  };
+
   return (
     <Box>
       {loading ? (
@@ -39,6 +53,9 @@ function Products() {
               image={product.image}
               category={product.category}
               rating={product.rating}
+              add="Add to cart "
+              view="  View product"
+              addToCart={() => addToCart(product)}
             />
           ))}
         </SimpleGrid>
