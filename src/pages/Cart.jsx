@@ -1,43 +1,41 @@
-import { Button, Image, Text, TextInput, Title } from "@mantine/core";
-// import { Image } from "@mantine/core";
+import { useContext } from "react";
 import classes from "./Cart.module.css";
-import { useState } from "react";
-export default function Cart() {
-const[addedProduct,setAddedProduct] =useState()
+import { Button, Group,Image, Text, TextInput, Title, Container} from '@mantine/core';
+import { CartContext } from "../context/CartContext";
 
+export default function Cart() {
+  const { cart , removeFromCart} = useContext(CartContext);
+
+ 
   return (
-    <div className={classes.wrapper}>
+    <Container spacing={4} mt={-70}>
+    {cart?.map((cart) => (
+        <div className={classes.wrapper}>
       <div className={classes.body}>
-        <Title className={classes.title}>Dear customer</Title>
-        <Text fw={300} fz="lg" mb={3}>
-          thenk you for shopping with us,
-          <br /> the product you selected has been added to you <b>Cart</b>,
-          soon you'll recieve it
+        <Title className={classes.title}>{cart.title}</Title>
+        <Text fw={500} fz="lg" mb={5}>
+        Category: {cart.category}
         </Text>
         <Text fz="sm" c="dimmed">
-          follow us for more goodies and You will never miss important product
-          updates,Our new products are availabe once a week, every Sunday.
+         Price: k {cart.price}
         </Text>
-        {/* <div className="cart-item">
-          <Image src={product.image} alt={product.name} width={100} />
-          <h3>{ product.name}</h3>
-          <p>${product.price}</p>
-          <p>{product.rating}</p>
-        </div> */}
+
+         <Text fz="sm" c="dimmed">
+         Total: k {cart.price}
+        </Text>
 
         <div className={classes.controls}>
-          <TextInput
-            placeholder="Your email"
-            classNames={{ input: classes.input, root: classes.inputWrapper }}
-            radius="md"
-            size="md"
-          />
-          <Button className={classes.control} radius="md" size="md">~
-            Send
-          </Button>
+         
+         <Group justify="center">
+               <Button size="sm">-</Button>0<Button size="sm">+</Button>
+                <Button size="sm" onClick={ ()=>removeFromCart(cart.id)}>Remove cart</Button>
+               </Group>
         </div>
       </div>
-      {/* <Image src={product.image} className={classes.image} /> */}
+      <Image src={cart.image} className={classes.image} />
     </div>
+    ))}
+    </Container>
+    
   );
 }

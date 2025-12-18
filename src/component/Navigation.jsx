@@ -16,7 +16,7 @@ export function Navigation() {
   const links = [
   { link: "/", label: "Home" },
   { link: "/products", label: "Products" },
-  { link: "/cart", label: cart.length },
+  { link: "/cart", label:  `🛒 ${cart.length}` },
   { link: "/about", label: "About" },
 ];
   const items = links.map((link) => (
