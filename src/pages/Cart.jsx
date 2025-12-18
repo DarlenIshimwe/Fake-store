@@ -9,6 +9,7 @@ export default function Cart() {
  
   return (
     <Container spacing={4} mt={-70}>
+   {cart.length <= 0 ? "Nothing has been added to the cart yet" : (<>
     {cart?.map((cart) => (
         <div className={classes.wrapper}>
       <div className={classes.body}>
@@ -35,6 +36,7 @@ export default function Cart() {
       <Image src={cart.image} className={classes.image} />
     </div>
     ))}
+   </>)}
     </Container>
     
   );
