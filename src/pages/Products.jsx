@@ -4,6 +4,7 @@ import { ReuseableCard } from "../component/ReuseableCard";
 import { SimpleGrid, Box } from "@mantine/core";
 import Loading from "../component/Loading";
 import { CartContext } from "../context/CartContext";
+import { Container } from "postcss";
 
 function Products() {
     const { addToCart } = useContext(CartContext);
@@ -35,7 +36,7 @@ function Products() {
         <SimpleGrid cols={4} mt={-70}>
           {products.map((product) => (
             <ReuseableCard
-              key={product.id}
+           
               to={`/product/${product?.id}`}
               title={product.title}
               description={product.description}
@@ -48,6 +49,7 @@ function Products() {
               addToCart={() => addToCart(product)}
             />
           ))}
+          
         </SimpleGrid>
       )}
     </Box>
